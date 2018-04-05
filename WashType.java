@@ -34,6 +34,11 @@ public class WashType{
       this.price = price;
    }
    
+   public double getPrice(){
+   
+      return this.price;
+   }
+   
    public void displayWash(){
    
       System.out.println("Washtype: " + number);
@@ -41,4 +46,6 @@ public class WashType{
       System.out.println("\tPrice: \t" + price + "kr.");
      
    }
+   
+  
 }

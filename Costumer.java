@@ -2,16 +2,14 @@ import java.util.*;
 public class Costumer{
 
    private String name;
-   private String number;
-   private int card;
+   private int number;
    private Costumer[] costumers;
    private int code;
    //private WashCard washcard;
    
    //Constructor
-   public Costumer(int card, String name, String number, int code /*WashCard washcard*/){
+   public Costumer(String name, int number, int code){
    
-      this.card = card;
       this.name = name;
       this.number = number;
       this.code = code;
@@ -22,7 +20,7 @@ public class Costumer{
    
    public void displayCostumer(){
    
-   System.out.println("Costumer: " + card);
+   System.out.println("Costumer: ");
    System.out.println("\tName: \t\t\t" + name);
    System.out.println("\tPhone-number: \t" + number);
    System.out.println("\tCode: \t\t\t" + code);
@@ -34,7 +32,7 @@ public class Costumer{
    return this.name;
    }   
    
-   public String getNumber(){
+   public int getNumber(){
    
       return this.number;
    }
@@ -44,7 +42,7 @@ public class Costumer{
       return this.code;
    }
    
-   public void setNumber(String number){
+   public void setNumber(int number){
    
       this.number = number;
    }
@@ -56,7 +54,7 @@ public class Costumer{
    
    public void setCode(){
    
-      this.code = (int) (Math.random() * 999 + 100);
+      this.code = (int) (Math.random() * 900 + 100);
    }
    
 

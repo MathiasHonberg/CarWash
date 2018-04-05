@@ -5,22 +5,29 @@ public class SuperShine{
    
       Scanner scan = new Scanner(System.in);
       
-      //Counter the total washed done
+      //Variables
       int counter = 0;
+      int b = 0;
+      int s = 0;
+      int g = 0;
+      int d = 0;
+      double oms = 0;
+      double revenue = 950.0;
+      int ocode = 1337;
       
       //create WashCard
       WashCard mathiass = new WashCard();
       WashCard tobiass = new WashCard();
       
       //Create costumers
-      Costumer mathias = new Costumer(1, "Mathias", "+45 53 88 84 94", 248);
-      Costumer tobias = new Costumer(2, "Tobias", "+45 31 70 71 17", 228);
+      Costumer mathias = new Costumer("Mathias", 5388849, 248);
+      Costumer tobias = new Costumer("Tobias", 31707117, 228);
 
       
       //Create costumer array
       Costumer[] costumers = new Costumer[2];
-      costumers[0] = new Costumer(1, "Mathias", "+45 53 88 84 94", 248);
-      costumers[1] = new Costumer(2, "Tobias", "+45 ", 228);
+      costumers[0] = new Costumer("Mathias", 53888494, 248);
+      costumers[1] = new Costumer("Tobias", 31707117, 228);
       
       //create washtypes
       WashType[] washTypes = new WashType[4];
@@ -36,21 +43,26 @@ public class SuperShine{
       //System.out.println(tobiass.getBalance() + " kr");
       
       //After we create and acount
-      Costumer alex = new Costumer(3, "Alex", "+45 70 12 14 16", 103);
+      Costumer alex = new Costumer("Alex", 70121416, 103);
       WashCard alexx = new WashCard();
       
       //The system that runs it all
-      int m = 0;
       outerloop:
-      while(m < 20){
+      while(true){
       System.out.println();
       System.out.println("Welcome to Supershine!");
       System.out.println("Please select one of the 4 options, by entering the number and press 'ENTER': \n"); 
       System.out.println("1: Wash your car\n2: Buy a WashCard\n3: Recharge and check balance on WashCard\n4: Exit\n5: Only for owner.");
+      
       int select = scan.nextInt();
       
+      if(select < 1 || select > 6){
+         
+            System.out.println("ERROR, CANNOT READ COMMAND.");
+         }
+      
       switch(select){
-         //If they choose option "Wash your Car"
+//If they choose option "Wash your Car"
          case 1: 
             System.out.print("Please enter your WashCard code: ");
             int code = scan.nextInt();
@@ -68,12 +80,20 @@ public class SuperShine{
                //BRONZE WASH
                case 1:
                   System.out.println("You picked wash: 'Bronze', if you have enough money on your WashCard the wash will begin.");
-                  if(tobiass.getBalance() > 200){
+                  if(tobiass.getBalance() >= 200){
                      
                      tobiass.pay(200);
                      System.out.println("Your wash is done!");
-                     System.out.println("Your WashCard balance is now: " + tobiass.getBalance());
+                     System.out.println("Your WashCard balance is now: " + tobiass.getBalance() + "\n");
                      counter++;
+                     b++;
+                     oms += washTypes[0].getPrice();
+                     System.out.println("Do you like a receipt? yes=1    no=2 ");
+                     int p = scan.nextInt();
+                     if(p == 1){
+                     
+                        System.out.println("Bought:\n'Bronze' Wash\nPrice:\n200 on " + tobias.getName() + "'s Washcard");
+                     }
                   }else{
                   
                      System.out.println("You dont have enough money on your WashCard.");
@@ -82,12 +102,14 @@ public class SuperShine{
                //SILVER WASH    
                case 2:
                   System.out.println("You picked wash: 'Silver', if you have enough money on your WashCard the wash will begin.");
-                  if(tobiass.getBalance() > 300){
+                  if(tobiass.getBalance() >= 300){
                      
                      tobiass.pay(300);
                      System.out.println("Your wash is done!");
                      System.out.println("Your WashCard balance is now: " + tobiass.getBalance());
                      counter++;
+                     s++;
+                     oms += washTypes[1].getPrice();
                   }else{
                   
                      System.out.println("You dont have enough money on your card.");
@@ -97,12 +119,14 @@ public class SuperShine{
                //GOLD WASH   
                case 3:
                   System.out.println("You picked wash: 'Gold', if you have enough money on your WashCard the wash will begin.");
-                  if(tobiass.getBalance() > 400){
+                  if(tobiass.getBalance() >= 400){
                      
                      tobiass.pay(400);
                      System.out.println("Your wash is done!");
                      System.out.println("Your WashCard balance is now: " + tobiass.getBalance());
                      counter++;
+                     g++;
+                     oms += washTypes[2].getPrice();
                   }else{
                   
                      System.out.println("You dont have enough money on your card.");
@@ -112,12 +136,14 @@ public class SuperShine{
                //DIAMOND WASH    
                case 4:
                   System.out.println("You picked wash: 'Diamond', if you have enough money on your WashCard the wash will begin.");
-                  if(tobiass.getBalance() > 550){
+                  if(tobiass.getBalance() >= 550){
                      
                      tobiass.pay(550);
                      System.out.println("Your wash is done!");
                      System.out.println("Your WashCard balance is now: " + tobiass.getBalance());
                      counter++;
+                     d++;
+                     oms += washTypes[3].getPrice();
                   }else{
                   
                      System.out.println("You dont have enough money on your card.");
@@ -139,12 +165,14 @@ public class SuperShine{
               
                case 1:
                   System.out.println("You picked wash: 'Bronze', if you have enough money on your WashCard the wash will begin.");
-                  if(mathiass.getBalance() > 200){
+                  if(mathiass.getBalance() >= 200){
                      
                      mathiass.pay(200);
                      System.out.println("Your wash is done!");
                      System.out.println("Your WashCard balance is now: " + mathiass.getBalance());
                      counter++;
+                     b++;
+                     oms += washTypes[0].getPrice();
                   }else{
                   
                      System.out.println("You dont have enough money on your card.");
@@ -152,12 +180,14 @@ public class SuperShine{
                   break;
                case 2:
                   System.out.println("You picked wash: 'Silver', if you have enough money on your WashCard the wash will begin.");
-                  if(mathiass.getBalance() > 300){
+                  if(mathiass.getBalance() >= 300){
                      
                      mathiass.pay(300);
                      System.out.println("Your wash is done!");
                      System.out.println("Your WashCard balance is now: " + mathiass.getBalance());
                      counter++;
+                     s++;
+                     oms += washTypes[1].getPrice();
                   }else{
                   
                      System.out.println("You dont have enough money on your card.");
@@ -166,12 +196,14 @@ public class SuperShine{
                   break;
                case 3:
                   System.out.println("You picked wash: 'Gold', if you have enough money on your WashCard the wash will begin.");
-                  if(mathiass.getBalance() > 400){
+                  if(mathiass.getBalance() >= 400){
                      
                      mathiass.pay(400);
                      System.out.println("Your wash is done!");
                      System.out.println("Your WashCard balance is now: " + mathiass.getBalance());
                      counter++;
+                     g++;
+                     oms += washTypes[2].getPrice();
                   }else{
                   
                      System.out.println("You dont have enough money on your card.");
@@ -180,12 +212,14 @@ public class SuperShine{
                   break;
                case 4:
                   System.out.println("You picked wash: 'Diamond', if you have enough money on your WashCard the wash will begin.");
-                  if(mathiass.getBalance() > 550){
+                  if(mathiass.getBalance() >= 550){
                      
                      mathiass.pay(550);
                      System.out.println("Your wash is done!");
                      System.out.println("Your WashCard balance is now: " + mathiass.getBalance());
                      counter++;
+                     d++;
+                     oms += washTypes[3].getPrice();
                   }else{
                   
                      System.out.println("You dont have enough money on your card.");
@@ -207,12 +241,14 @@ public class SuperShine{
               
                case 1:
                   System.out.println("You picked wash: 'Bronze', if you have enough money on your WashCard the wash will begin.");
-                  if(alexx.getBalance() > 200){
+                  if(alexx.getBalance() >= 200){
                      
                      alexx.pay(200);
                      System.out.println("Your wash is done!");
                      System.out.println("Your WashCard balance is now: " + alexx.getBalance());
                      counter++;
+                     b++;
+                     oms += washTypes[0].getPrice();
                   }else{
                   
                      System.out.println("You dont have enough money on your card.");
@@ -220,12 +256,14 @@ public class SuperShine{
                   break;
                case 2:
                   System.out.println("You picked wash: 'Silver', if you have enough money on your WashCard the wash will begin.");
-                  if(alexx.getBalance() > 300){
+                  if(alexx.getBalance() >= 300){
                      
                      alexx.pay(300);
                      System.out.println("Your wash is done!");
                      System.out.println("Your WashCard balance is now: " + alexx.getBalance());
                      counter++;
+                     s++;
+                     oms += washTypes[1].getPrice();
                   }else{
                   
                      System.out.println("You dont have enough money on your card.");
@@ -234,12 +272,14 @@ public class SuperShine{
                   break;
                case 3:
                   System.out.println("You picked wash: 'Gold', if you have enough money on your WashCard the wash will begin.");
-                  if(alexx.getBalance() > 400){
+                  if(alexx.getBalance() >= 400){
                      
                      alexx.pay(400);
                      System.out.println("Your wash is done!");
                      System.out.println("Your WashCard balance is now: " + alexx.getBalance());
                      counter++;
+                     g++;
+                     oms += washTypes[2].getPrice();
                   }else{
                   
                      System.out.println("You dont have enough money on your card.");
@@ -248,12 +288,14 @@ public class SuperShine{
                   break;
                case 4:
                   System.out.println("You picked wash: 'Diamond', if you have enough money on your WashCard the wash will begin.");
-                  if(alexx.getBalance() > 550){
+                  if(alexx.getBalance() >= 550){
                      
                      alexx.pay(550);
                      System.out.println("Your wash is done!");
                      System.out.println("Your WashCard balance is now: " + alexx.getBalance());
                      counter++;
+                     d++;
+                     oms += washTypes[3].getPrice();
                   }else{
                   
                      System.out.println("You dont have enough money on your card.");
@@ -269,14 +311,14 @@ public class SuperShine{
             
             break;
             
-         //If they choose option "Buy a WashCard"   
+//If they choose option "Buy a WashCard"   
          case 2: 
-            System.out.print("Please enter your name: ");
-               String navn = scan.next();
+            System.out.print("Please enter your name:");
+               String navn = scan.nextString();
                alex.setName(navn);
                System.out.println();
             System.out.print("Please enter your Phone-number: ");
-               String nummer = scan.next();
+               int nummer = scan.nextInt();
                alex.setNumber(nummer);
                alex.setCode();
                System.out.println("Here is your personal information and your personal WashCard code: \n");
@@ -290,6 +332,7 @@ public class SuperShine{
                   int dep = scan.nextInt();
                   if(dep > 0 && dep <= 1000){
                      alexx.deposit(dep);
+                     revenue += dep;
                      System.out.println("Your WashCard balance is now: \n" + alexx.getBalance());
                      System.out.print("Would you like to buy a car wash? yes=1    no=2 : ");
                      int choose = scan.nextInt();
@@ -305,12 +348,14 @@ public class SuperShine{
               
                         case 1:
                            System.out.println("You picked wash: 'Bronze', if you have enough money on your WashCard the wash will begin.");
-                           if(alexx.getBalance() > 200){
+                           if(alexx.getBalance() >= 200){
                      
                            alexx.pay(200);
                            System.out.println("Your wash is done!");
                            System.out.println("Your WashCard balance is now: " + alexx.getBalance());
                            counter++;
+                           b++;
+                           oms += washTypes[0].getPrice();
                         }else{
                   
                            System.out.println("You dont have enough money on your WashCard.");
@@ -318,12 +363,14 @@ public class SuperShine{
                            break;
                         case 2:
                            System.out.println("You picked wash: 'Silver', if you have enough money on your WashCard the wash will begin.");
-                           if(alexx.getBalance() > 300){
+                           if(alexx.getBalance() >= 300){
                      
                               alexx.pay(300);
                               System.out.println("Your wash is done!");
                               System.out.println("Your WashCard balance is now: " + alexx.getBalance());
                               counter++;
+                              s++;
+                              oms += washTypes[1].getPrice();
                            }else{
                   
                               System.out.println("You dont have enough money on your card.");
@@ -332,12 +379,14 @@ public class SuperShine{
                               break;
                         case 3:
                            System.out.println("You picked wash: 'Gold', if you have enough money on your WashCard the wash will begin.");
-                           if(alexx.getBalance() > 400){
+                           if(alexx.getBalance() >= 400){
                      
                               alexx.pay(400);
                               System.out.println("Your wash is done!");
                               System.out.println("Your WashCard balance is now: " + alexx.getBalance());
                               counter++;
+                              g++;
+                              oms += washTypes[2].getPrice();
                            }else{
                   
                               System.out.println("You dont have enough money on your card.");
@@ -346,12 +395,14 @@ public class SuperShine{
                               break;
                         case 4:
                            System.out.println("You picked wash: 'Diamond', if you have enough money on your WashCard the wash will begin.");
-                           if(alexx.getBalance() > 550){
+                           if(alexx.getBalance() >= 550){
                      
                               alexx.pay(550);
                               System.out.println("Your wash is done!");
                               System.out.println("Your WashCard balance is now: " + alexx.getBalance());
                               counter++;
+                              d++;
+                              oms += washTypes[3].getPrice();
                            }else{
                   
                               System.out.println("You dont have enough money on your card.");
@@ -375,7 +426,7 @@ public class SuperShine{
                
                
             break;
-           //If they choose option "Recharge or check WashCard" 
+//If they choose option "Recharge or check WashCard" 
          case 3:
             System.out.print("Please enter your WashCard code: ");
             int kkoder = scan.nextInt();
@@ -390,8 +441,9 @@ public class SuperShine{
                   if(deposit > 0 && deposit <= 1000){
                
                      mathiass.deposit(deposit);
+                     revenue += deposit;
                      System.out.println("Your WashCard balance is now: " + mathiass.getBalance());
-                  
+                  break;
                   } else{
                   
                   System.out.println("You have entered a wrong amount.");   
@@ -416,6 +468,7 @@ public class SuperShine{
                   if(depositt > 0 && depositt <= 1000){
                
                      tobiass.deposit(depositt);
+                     revenue += depositt;
                      System.out.println("Your WashCard balance is now: " + tobiass.getBalance());
                   
                   } else{
@@ -442,6 +495,7 @@ public class SuperShine{
                   if(ddeposit > 0 && ddeposit <= 1000){
                
                      alexx.deposit(ddeposit);
+                     revenue += ddeposit;
                      System.out.println("Your WashCard balance is now: " + alexx.getBalance());
                   
                   } else{
@@ -457,19 +511,28 @@ public class SuperShine{
                }
                break;
             }
-         //If the want to exit the program
+//If the want to exit the program
          case 4:
             System.out.println("Bye, and have a nice day!");
             
             break outerloop;
-      
+//If the owner wants to see statistics      
          case 5:
-            System.out.println();
-            System.out.println("Here is the overview of all the washes done.\nTotal washes: " + counter);
-            
-         m++;
+            System.out.print("Please enter SS code: ");
+            int sscode = scan.nextInt();
+            if(sscode == ocode){
+               System.out.println();
+               System.out.println("SuperShine statistics:\n'Bronze' washes:\t" + b + "\n'Silver' washes:\t" + s + 
+               "\n'Gold' washes:\t\t" + g + "\n'Diamond' washes:\t" + d + "\nTotal number of car washes:\t" + counter +
+               "\nTotal price of car washes:\t\t" + oms + " Kr.\nRevenue: " + revenue + " Kr.");
+            }else{
+               
+               System.out.println("You have entered a wrong code");
+            }
+         
       }
       }
 
    }
+   
 }
